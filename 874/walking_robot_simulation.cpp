@@ -36,11 +36,61 @@ The answer is guaranteed to be less than 2 ^ 31.
  */
 
 #include <vector>
+#include <unordered_set>
 using namespace std;
+
+#define HASH(x, y) (((unsigned long long)(unsigned int)(x) << 32) | (unsigned int)(y))
 
 class Solution {
 public:
+
     int robotSim(vector<int>& commands, vector<vector<int> >& obstacles) {
+        unordered_set<unsigned long long> obs_set;
+        for(const auto & a: obstacles) {
+            obs_set.insert(HASH(a[0], a[1]));
+        }
+
+        int max = 0;
+        int x = 0;
+        int y = 0;
         
+        int* axis[] = {&y, &x, &y, &x};
+        int diff[] = {1, 1, -1, -1};
+        int direct = 0;
+
+        for (const auto&c: commands) {
+            if(c < 0) {
+                // Turning left and turning right are opposite actions, it's good to be -1 and 1.
+                direct += ((c + 1) << 1) + 1;
+                direct &= 3;
+            }
+
+            int &a = *axis[direct];
+            int d = diff[direct];
+
+            for(int i = 0; i < c; i++) {
+                a += d;
+                if (obs_set.end() != obs_set.find(HASH(x, y))) {
+                    a -= d;
+                    break;
+                }
+            }
+
+            int distance = x * x + y * y;
+            if(max < distance) {
+                max = distance;
+            }
+        }
+
+        return max;
     }
 };
+
+int main(int argc, const char *argv[])
+{
+    Solution s;
+    vector<int> commands{2, -1, 8, -1, 6};
+    vector<vector<int> > obstacles{{1,5},{-5,-5},{0,4},{-1,-1},{4,5},{-5,-3},{-2,1},{-2,-5},{0,5},{0,-1}};
+    s.robotSim(commands, obstacles);
+    return 0;
+}

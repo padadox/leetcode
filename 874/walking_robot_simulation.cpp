@@ -39,7 +39,13 @@ The answer is guaranteed to be less than 2 ^ 31.
 #include <unordered_set>
 using namespace std;
 
-#define HASH(x, y) (((unsigned long long)(unsigned int)(x) << 32) | (unsigned int)(y))
+static auto __ = [] () {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    return 0;
+}();
+
+#define HASH(x, y) (((unsigned long long)(x) << 32) | (unsigned int)(y))
 
 class Solution {
 public:
@@ -63,6 +69,7 @@ public:
                 // Turning left and turning right are opposite actions, it's good to be -1 and 1.
                 direct += ((c + 1) << 1) + 1;
                 direct &= 3;
+                continue;
             }
 
             int &a = *axis[direct];

@@ -39,6 +39,7 @@ The answer is guaranteed to be less than 2 ^ 31.
 #include <unordered_set>
 using namespace std;
 
+#include <iostream>
 static auto __ = [] () {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);

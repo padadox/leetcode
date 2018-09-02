@@ -1,0 +1,67 @@
+
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <iomanip>
+#include <algorithm>
+#include <numeric>
+#include <vector>
+#include <string>
+#include <set>
+#include <map>
+#include <queue>
+#include <stack>
+#include <cmath>
+#include <cstring>
+#include <unordered_set>
+#include <unordered_map>
+using namespace std;
+
+#define pb push_back
+#define fst first
+#define snd second
+
+typedef long long ll;
+typedef pair<int,int> pii;
+template<typename T> using min_queue=priority_queue<T,vector<T>,greater<T>>;
+
+const ll MOD=1e9+7;
+
+static auto __ = [] () {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    return 0;
+}();
+
+class Solution {
+public:
+    int subarrayBitwiseORs(vector<int>& A) {
+        unordered_set<int> all;
+        unordered_set<int> pre;
+        for(size_t i = 0; i < A.size(); i++) {
+            unordered_set<int> cur;
+            for(auto& x: pre) {
+                cur.insert(x|A[i]);
+            }
+
+            cur.insert(A[i]);
+
+            for(auto x: cur) {
+                all.insert(x);
+            }
+
+            pre = cur;
+        }
+        return all.size();
+    }
+};
+
+int main(int argc, const char *argv[])
+{
+    vector<int> A{1, 2, 4};
+
+    Solution s;
+    cout << s.subarrayBitwiseORs(A);
+
+    return 0;
+}

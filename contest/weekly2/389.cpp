@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -32,4 +33,27 @@ static auto __ = [] () {
     return 0;
 }();
 
+class Solution {
+public:
+    char findTheDifference(string s, string t) {
+        int cnt[26] = {0};
+        int cnt2[26] = {0};
 
+        for(auto x: s) {
+            cnt[x-'a']++;
+        }
+
+        for(auto x: t) {
+            cnt2[x-'a']++;
+        }
+
+        char i = 0;
+        for(i = 0; i < 26; ++i) {
+            if (cnt[i] != cnt2[i]) {
+                break;
+            }
+        }
+
+        return 'a' + i;
+    }
+};

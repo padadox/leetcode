@@ -33,3 +33,12 @@ static auto __ = [] () {
 }();
 
 
+class Solution {
+public:
+    int sumSubarrayMins(vector<int>& A) {
+        ll ans = 0;
+        int cont_min = 0;
+
+
+    }
+};

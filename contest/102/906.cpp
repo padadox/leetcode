@@ -33,3 +33,23 @@ static auto __ = [] () {
 }();
 
 
+class Solution {
+public:
+    int superpalindromesInRange(string L, string R) {
+        ll l = atoll(L.c_str());
+        ll r = atoll(R.c_str());
+
+        int bits_l = count_bits(l);
+        int bits_r = count_bits(r);
+    }
+
+    int count_bits(ll n) {
+        int x = 0;
+        while(n) {
+            x++;
+            n /= 10;
+        }
+
+        return x;
+    }
+};

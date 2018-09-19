@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -32,4 +33,30 @@ static auto __ = [] () {
     return 0;
 }();
 
+class Solution {
+public:
+    int lastRemaining(int n) {
+        if(n == 1) {
+            return 1;
+        }
 
+        if(n <= 5) {
+            return 2;
+        }
+
+        int m = n >> 1;
+        int r = 1 - (m & 1);
+        int a = lastRemaining(m >> 1);
+
+        return ((a*2) - r) * 2;
+    }
+};
+
+int main(int argc, const char *argv[])
+{
+    int n = 0;
+    cin >> n;
+    Solution s;
+    cout << s.lastRemaining(n) << endl;
+    return 0;
+}

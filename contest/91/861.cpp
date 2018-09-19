@@ -33,3 +33,24 @@ static auto __ = [] () {
 }();
 
 
+class Solution {
+public:
+    int matrixScore(vector<vector<int>>& A) {
+        int r = A.size();
+        int c = A[0].size();
+        int shift_width = c-1;
+        int ans = r << shift_width;
+
+        for(int j = 1; j < c; ++j) {
+            shift_width--;
+            int cnt = 0;
+            for(int i = 0; i < r; ++i) {
+                cnt += A[i][j] ^ A[i][0];
+            }
+
+            ans += max(cnt, r-cnt) << shift_width;
+        }
+
+        return ans;
+    }
+};

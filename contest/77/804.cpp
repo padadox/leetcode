@@ -33,3 +33,21 @@ static auto __ = [] () {
 }();
 
 
+
+class Solution {
+    string morse_map[26] = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
+public:
+    int uniqueMorseRepresentations(vector<string>& words) {
+        set<string> ans;
+        for(const auto &x: words) {
+            string y;
+            for(auto c: x) {
+                y += morse_map[c-'a'];
+            }
+
+            ans.insert(y);
+        }
+
+        return ans.size();
+    }
+};

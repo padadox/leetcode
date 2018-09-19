@@ -33,3 +33,26 @@ static auto __ = [] () {
 }();
 
 
+class Solution {
+public:
+    vector<int> numberOfLines(vector<int>& widths, string S) {
+        int line = 0;
+        int sum = 0;
+
+        for(auto x: S) {
+            sum += widths[x-'a'];
+            if(sum > 100) {
+                line++;
+                sum = widths[x-'a'];
+            }
+        }
+
+        line++;
+
+        vector<int> ans(2);
+        ans[0] = line;
+        ans[1] = sum;
+
+        return ans;
+    }
+};

@@ -33,3 +33,26 @@ static auto __ = [] () {
 }();
 
 
+class Solution {
+public:
+    vector<int> sortArrayByParity(vector<int>& A) {
+        vector<int> even;
+        vector<int> odd;
+
+        even.reserve(A.size());
+        odd.reserve(A.size());
+
+        for(auto x: A) {
+            if(x & 1) {
+                odd.push_back(x);
+            }
+            else {
+                even.push_back(x);
+            }
+        }
+
+        even.insert(even.end(), odd.begin(), odd.end());
+
+        return even;
+    }
+};

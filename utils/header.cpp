@@ -20,11 +20,12 @@ using namespace std;
 #define fst first
 #define snd second
 
-typedef long long ll;
-typedef pair<int,int> pii;
+using int64 = long long;
+using pii = pair<int,int>;
+using tiii = tuple<int, int, int>;
 template<typename T> using min_queue=priority_queue<T,vector<T>,greater<T>>;
 
-const ll MOD=1e9+7;
+const int64 MOD=1e9+7;
 
 static auto __ = [] () {
     ios::sync_with_stdio(false);

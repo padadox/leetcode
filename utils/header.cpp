@@ -27,10 +27,3 @@ template<typename T> using min_queue=priority_queue<T,vector<T>,greater<T>>;
 
 const int64 MOD=1e9+7;
 
-static auto __ = [] () {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    return 0;
-}();
-
-

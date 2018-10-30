@@ -56,6 +56,15 @@ inline ListNode* stringToListNode(string input) {
     return ptr;
 }
 
+inline void releaseLinkedList(ListNode* node) {
+    ListNode *pre = nullptr;
+    while(node != nullptr) {
+        pre = node;
+        node = node->next;
+        delete pre;
+    }
+}
+
 inline void prettyPrintLinkedList(ListNode* node) {
     while (node && node->next) {
         cout << node->val << "->";
@@ -76,7 +85,7 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-string treeNodeToString(TreeNode* root) {
+inline string treeNodeToString(TreeNode* root) {
     if (root == nullptr) {
         return "[]";
     }
@@ -100,7 +109,7 @@ string treeNodeToString(TreeNode* root) {
     return "[" + output.substr(0, output.length() - 2) + "]";
 }
 
-TreeNode* stringToTreeNode(string input) {
+inline TreeNode* stringToTreeNode(string input) {
     trimLeftTrailingSpaces(input);
     trimRightTrailingSpaces(input);
     input = input.substr(1, input.length() - 2);
@@ -146,7 +155,7 @@ TreeNode* stringToTreeNode(string input) {
     return root;
 }
 
-void prettyPrintTree(TreeNode* node, string prefix = "", bool isLeft = true) {
+inline void prettyPrintTree(TreeNode* node, string prefix = "", bool isLeft = true) {
     if (node == nullptr) {
         cout << "Empty tree";
         return;
@@ -163,3 +172,22 @@ void prettyPrintTree(TreeNode* node, string prefix = "", bool isLeft = true) {
     }
 }
 
+inline void releaseTree(TreeNode* node) {
+    if(node->left != nullptr) {
+        releaseTree(node->left);
+    }
+
+    if(node->right != nullptr) {
+        releaseTree(node->right);
+    }
+
+    delete node;
+}
+
+inline void printIntegerVector(const vector<int>& v) {
+    cout << "[";
+    for(auto x: v) {
+        cout << x << ", ";
+    }
+    cout << "]" << endl;
+}
